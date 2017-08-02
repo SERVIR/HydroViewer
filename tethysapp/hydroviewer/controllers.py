@@ -60,9 +60,20 @@ def ecmwf_get_time_series(request):
                                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid + '&start_folder=' +
                                startdate + '&stat_type=mean', headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
+            res2 = requests.get(
+                'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetHistoricData/?watershed_name=' +
+                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid,
+                headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+
             api_call = res.content
+            api_call2 = res2.content
+
             data = api_call.split('dateTimeUTC="')
             data.pop(0)
+
+            data2 = api_call2.split('dateTimeUTC="')
+            data2.pop(0)
+
 
             ts_pairs = []
             for elem in data:
@@ -72,11 +83,20 @@ def ecmwf_get_time_series(request):
 
                 ts_pairs.append([date * 1e3, value])
 
+            ts_pairs2 = []
+            for elem in data2:
+                date = time.mktime(dt.datetime.strptime(elem.split('"  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[0],
+                                                        '%Y-%m-%dT%H:%M:%S').timetuple())
+                value = float(elem.split('  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[1].split('</value>')[0])
+
+                ts_pairs2.append([date * 1e3, value])
+
             ts_pairs_data = {}
             ts_pairs_data['watershed'] = watershed
             ts_pairs_data['subbasin'] = subbasin
             ts_pairs_data['id'] = comid
             ts_pairs_data['ts_pairs'] = ts_pairs
+            ts_pairs_data['ts_pairs2'] = ts_pairs2
 
             return JsonResponse({
                 "success": "Data analysis complete!",

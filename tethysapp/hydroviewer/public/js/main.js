@@ -279,8 +279,8 @@ function get_time_series(model, watershed, subbasin, comid, startdate) {
             if ("success" in data) {
                 if ("ts_pairs_data" in data) {
                     var returned_tsPairsData = JSON.parse(data.ts_pairs_data).ts_pairs;
-
-                    initChart(returned_tsPairsData, watershed, subbasin, comid);
+                    var returned_tsPairsData2 = JSON.parse(data.ts_pairs_data).ts_pairs2;
+                    initChart(returned_tsPairsData,returned_tsPairsData2, watershed, subbasin, comid);
                     get_return_periods(watershed, subbasin, comid);
                 }
             } else if ("error" in data) {
@@ -297,10 +297,13 @@ function get_time_series(model, watershed, subbasin, comid, startdate) {
     });
 }
 
-function initChart(data, watershed, subbasin, id) {
-    Highcharts.chart('container', {
+function initChart(data,data2, watershed, subbasin, id) {
+    Highcharts.stockChart('container', {
         chart: {
             zoomType: 'x'
+        },
+        rangeSelector: {
+            selected: 0
         },
         title: {
             text: 'Forecast'
@@ -317,12 +320,16 @@ function initChart(data, watershed, subbasin, id) {
         yAxis: {
             title: {
                 text: 'Flow (cms)'
-            }
+            },
+            opposite:false
         },
         legend: {
             enabled: true
         },
         plotOptions: {
+            series: {
+                showInNavigator: true
+            },
             area: {
                 fillColor: {
                     linearGradient: {
@@ -353,6 +360,10 @@ function initChart(data, watershed, subbasin, id) {
             type: 'area',
             name: 'Mean Forecast',
             data: data
+        },{
+            type: 'area',
+            name: 'Historic Data',
+            data: data2
         }]
     });
 }
