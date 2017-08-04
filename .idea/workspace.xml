@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f1c550-5d35-4ef0-b9f5-c04dd1fc1498" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/app.py" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/main.js" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,17 +64,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wms.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wms.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1738">
-              <caret line="274" column="46" lean-forward="true" selection-start-line="274" selection-start-column="46" selection-end-line="274" selection-end-column="46" />
+            <state relative-caret-position="144">
+              <caret line="460" column="24" lean-forward="true" selection-start-line="460" selection-start-column="24" selection-end-line="460" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1501862086532" expanded="true" signature="10412:10430" ph="..." />
-                <marker date="1501862086532" expanded="true" signature="11408:11426" ph="..." />
-                <marker date="1501862086532" expanded="true" signature="13458:13476" ph="..." />
-                <marker date="1501862086532" expanded="true" signature="14702:14720" ph="..." />
+                <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
+                <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
+                <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
+                <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
               </folding>
             </state>
           </provider>
@@ -97,7 +90,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="351">
@@ -150,8 +143,8 @@
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/app.py" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py" />
-        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" />
+        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
       </list>
     </option>
   </component>
@@ -450,10 +443,10 @@
           <caret line="227" column="47" lean-forward="false" selection-start-line="227" selection-start-column="47" selection-end-line="227" selection-end-column="47" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1501862086532" expanded="true" signature="10412:10430" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="11408:11426" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="13458:13476" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="14702:14720" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
           </folding>
         </state>
       </provider>
@@ -543,20 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1738">
-          <caret line="274" column="46" lean-forward="true" selection-start-line="274" selection-start-column="46" selection-end-line="274" selection-end-column="46" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1501862086532" expanded="true" signature="10412:10430" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="11408:11426" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="13458:13476" ph="..." />
-            <marker date="1501862086532" expanded="true" signature="14702:14720" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -574,6 +553,20 @@
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#4;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="460" column="24" lean-forward="true" selection-start-line="460" selection-start-column="24" selection-end-line="460" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
+            <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
           </folding>
         </state>
       </provider>

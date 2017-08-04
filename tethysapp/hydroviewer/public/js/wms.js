@@ -96,13 +96,7 @@ function init_map(){
 
 
     featureOverlay = new ol.layer.Vector({
-        source: new ol.source.Vector(),
-        style: new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: '#ff2513',
-                width: 20
-            })
-        })
+        source: new ol.source.Vector()
     });
 
     two_year_warning = new ol.layer.Vector({
@@ -264,45 +258,50 @@ function get_warning_points(watershed,subbasin){
             map.getLayers().item(2).getSource().clear();
             map.getLayers().item(3).getSource().clear();
 
-            var warLen2 = result.warning2.length;
-            var warLen10 = result.warning10.length;
-            var warLen20 = result.warning20.length;
-
-            for (var i = 0; i < warLen2; ++i) {
-                var geometry = new ol.geom.Point(ol.proj.transform([result.warning2[i].lon,
-                        result.warning2[i].lat],
-                    'EPSG:4326', 'EPSG:3857'));
-                var feature = new ol.Feature({
-                    geometry: geometry,
-                    point_size: result.warning2[i].size
-                });
-                map.getLayers().item(1).getSource().addFeature(feature);
+            if(result.warning2 != 'undefined'){
+                var warLen2 = result.warning2.length;
+                for (var i = 0; i < warLen2; ++i) {
+                    var geometry = new ol.geom.Point(ol.proj.transform([result.warning2[i].lon,
+                            result.warning2[i].lat],
+                        'EPSG:4326', 'EPSG:3857'));
+                    var feature = new ol.Feature({
+                        geometry: geometry,
+                        point_size: result.warning2[i].size
+                    });
+                    map.getLayers().item(1).getSource().addFeature(feature);
+                }
+                map.getLayers().item(1).setVisible(true);
             }
 
-            for (var j = 0; j < warLen10; ++j) {
-                var geometry = new ol.geom.Point(ol.proj.transform([result.warning10[j].lon,
-                        result.warning10[j].lat],
-                    'EPSG:4326', 'EPSG:3857'));
-                var feature = new ol.Feature({
-                    geometry: geometry,
-                    point_size: result.warning10[j].size
-                });
-                map.getLayers().item(2).getSource().addFeature(feature);
+            if(result.warning10 != 'undefined'){
+                var warLen10 = result.warning10.length;
+                for (var j = 0; j < warLen10; ++j) {
+                    var geometry = new ol.geom.Point(ol.proj.transform([result.warning10[j].lon,
+                            result.warning10[j].lat],
+                        'EPSG:4326', 'EPSG:3857'));
+                    var feature = new ol.Feature({
+                        geometry: geometry,
+                        point_size: result.warning10[j].size
+                    });
+                    map.getLayers().item(2).getSource().addFeature(feature);
+                }
+                map.getLayers().item(2).setVisible(true);
             }
 
-            for (var k = 0; k < warLen20; ++k) {
-                var geometry = new ol.geom.Point(ol.proj.transform([result.warning20[k].lon,
-                        result.warning20[k].lat],
-                    'EPSG:4326', 'EPSG:3857'));
-                var feature = new ol.Feature({
-                    geometry: geometry,
-                    point_size: result.warning20[k].size
-                });
-                map.getLayers().item(3).getSource().addFeature(feature);
+            if(result.warning20 != 'undefined'){
+                var warLen20 = result.warning20.length;
+                for (var k = 0; k < warLen20; ++k) {
+                    var geometry = new ol.geom.Point(ol.proj.transform([result.warning20[k].lon,
+                            result.warning20[k].lat],
+                        'EPSG:4326', 'EPSG:3857'));
+                    var feature = new ol.Feature({
+                        geometry: geometry,
+                        point_size: result.warning20[k].size
+                    });
+                    map.getLayers().item(3).getSource().addFeature(feature);
+                }
+                map.getLayers().item(3).setVisible(true);
             }
-            map.getLayers().item(1).setVisible(true);
-            map.getLayers().item(2).setVisible(true);
-            map.getLayers().item(3).setVisible(true);
 
         }
     });
@@ -460,100 +459,131 @@ function initChart(data,data2,data3,data4, watershed, subbasin, id) {
             text: watershed.charAt(0).toUpperCase() + watershed.slice(1) + ' (' + subbasin.charAt(0).toUpperCase() + subbasin.slice(1) + '): ' + id
         },
         rangeSelector: {
-            selected: 0
+            allButtonsEnabled: true,
+            buttons: [{
+                type: 'day',
+                count: 15,
+                text: 'Forecast'
+            }, {
+                type: 'month',
+                count: 1,
+                text: '1m'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m'
+            }, {
+                type: 'ytd',
+                text: 'YTD'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y'
+            }, {
+                type: 'all',
+                text: 'All'
+            }
+        ],
+    buttonTheme: {
+        width: 60
+    },
+    selected: 0
+},
+    xAxis: {
+        title: {
+            text: 'Date (UTC)'
         },
-        xAxis: {
-            title: {
-                text: 'Date (UTC)'
-            },
-            type: 'datetime',
-            tickInterval:24 * 3600 * 10000
-            //ordinal:false
+        type: 'datetime',
+            tickInterval:24 * 3600 * 10000,
+            minRange: 1 * 24 * 3600000,
+            ordinal:false
+    },
+    yAxis: {
+        title: {
+            text: 'Flow (cms)'
         },
-        yAxis: {
-            title: {
-                text: 'Flow (cms)'
-            },
-            opposite:false
-        },
-        legend: {
-            enabled: true
-        },
-        plotOptions: {
-            series: {
-                showInNavigator: true,
-                //pointRange:10 * 24 * 3600 * 1000,
-                pointStart: Date.UTC(1980, 0, 1),
+        opposite:false,
+            min:0
+    },
+    legend: {
+        enabled: true
+    },
+    _navigator: {
+        enabled: false
+    },
+    plotOptions: {
+        series:{
+            pointStart: Date.UTC(1980, 0, 1),
                 pointInterval: 24 * 3600 * 1000,
                 connectNulls: true
-            },
-            area: {
-                fillColor: {
-                    linearGradient: {
-                        x1: 0,
+        },
+        area: {
+            fillColor: {
+                linearGradient: {
+                    x1: 0,
                         y1: 0,
                         x2: 0,
                         y2: 1
-                    },
-                    stops: [
-                        [0, Highcharts.getOptions().colors[0]],
-                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                    ]
                 },
-                lineWidth: 1,
+                stops: [
+                    [0, Highcharts.getOptions().colors[0]],
+                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            },
+            lineWidth: 1,
                 states: {
-                    hover: {
-                        lineWidth: 1
-                    }
-                },
-                threshold: null,
-                marker: {
-                    enabled: false
+                hover: {
+                    lineWidth: 1
                 }
+            },
+            threshold: null,
+                marker: {
+                enabled: false
             }
-        },
+        }
+    },
 
-        series: [{
+    series: [{
+        type: 'line',
+        name: 'Mean Forecast',
+        data: data,
+        lineWidth: 4
+    },
+        {
             type: 'line',
-            name: 'Mean Forecast',
-            data: data,
-            lineWidth: 4,
-            zIndex: 2
-
+            name: 'Historic Forecast',
+            data: data2,
+            lineWidth: 2
         },
-            {
-                type: 'line',
-                name: 'Historic Forecast',
-                data: data2,
-                lineWidth: 2,
-                zIndex: 1
+        {
+            type: 'arearange',
+            name: 'Ensemble Range',
+            data: data3,
+            lineWidth: 0,
+            dataLabels: {
+                enabled: false
             },
-            {
-                type: 'arearange',
-                name: 'Ensemble Range',
-                data: data3,
-                lineWidth: 0,
-                dataLabels: {
-                    enabled: false
-                },
-                fillOpacity: 0.2,
-                zIndex: -1,
-                visible: false
+            fillOpacity: 0.3,
+            visible: false
+        },
+        {
+            type: 'arearange',
+            name: 'Std. Dev.',
+            data: data4,
+            lineWidth: 0,
+            dataLabels: {
+                enabled: false
             },
-            {
-                type: 'arearange',
-                name: 'Std. Dev.',
-                data: data4,
-                lineWidth: 0,
-                dataLabels: {
-                    enabled: false
-                },
-                fillOpacity: 0.2,
-                zIndex: -2,
-                visible: false
-            }
-        ]
-    });
+            fillOpacity: 0.3,
+            visible: false
+        }
+    ]
+});
+
 }
 
 function map_events(){
@@ -595,7 +625,7 @@ function map_events(){
 
                         var model = 'ecmwf-rapid';
                         $('#info').addClass('hidden');
-                        //add_feature(workspace,watershed,subbasin,comid);
+                        add_feature(workspace,watershed,subbasin,comid);
 
                         get_available_dates(watershed, subbasin,comid);
                         get_time_series(model, watershed, subbasin, comid, startdate);
@@ -611,24 +641,30 @@ function map_events(){
 }
 
 function add_feature(workspace,watershed,subbasin,comid){
-    $.ajax('http://tethys.byu.edu:8181/geoserver/' + workspace + '/ows', {
-        type: 'GET',
-        data: {
-            service: 'WFS',
-            version: '2.0.0',
-            request: 'GetFeature',
-            typename: workspace + ':' + watershed + '-' + subbasin + '-drainage_line',
-            srsname: 'EPSG:3857',
-            CQL_FILTER:'COMID='+comid,
-            outputFormat: 'application/json'
+    map.removeLayer(featureOverlay);
+
+    var vectorSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON(),
+        url: function (extent) {
+            return 'http://tethys.byu.edu:8181/geoserver/ows?service=wfs&' +
+                'version=2.0.0&request=getfeature&typename='+workspace+':'+watershed+'-'+subbasin+'-drainage_line'+'&CQL_FILTER=COMID='+comid+'&outputFormat=application/json&srsname=EPSG:3857&' + ',EPSG:3857';
         },
-        success: function (result) {
-            map.getLayers().item(2).getSource().clear();
-            var parser = new ol.format.GeoJSON();
-            var feature = parser.readFeature(result);
-            map.getLayers().item(2).getSource().addFeature(feature);
-        }
+        strategy: ol.loadingstrategy.bbox
     });
+
+
+    featureOverlay = new ol.layer.Vector({
+        source: vectorSource,
+        style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: '#00BFFF',
+                width: 8
+            })
+        })
+    });
+    map.addLayer(featureOverlay);
+    map.getLayers().item(5)
+
 }
 $(function(){
     $('#app-content-wrapper').removeClass('show-nav');
