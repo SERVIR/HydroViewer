@@ -2,6 +2,75 @@
 var vectorLayer,
     select_interaction,
     map;
+var $loading = $('#view-file-loading');
+//create symbols for warnings
+var twenty_symbols = [new ol.style.RegularShape({
+    points: 3,
+    radius: 5,
+    fill: new ol.style.Fill({
+        color: 'rgba(128,0,128,0.8)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(128,0,128,1)',
+        width: 1
+    })
+}),new ol.style.RegularShape({
+    points: 3,
+    radius: 9,
+    fill: new ol.style.Fill({
+        color: 'rgba(128,0,128,0.3)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(128,0,128,1)',
+        width: 1
+    })
+})];
+
+//symbols
+var ten_symbols = [new ol.style.RegularShape({
+    points: 3,
+    radius: 5,
+    fill: new ol.style.Fill({
+        color: 'rgba(255,0,0,0.7)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(255,0,0,1)',
+        width: 1
+    })
+}),new ol.style.RegularShape({
+    points: 3,
+    radius: 9,
+    fill: new ol.style.Fill({
+        color: 'rgba(255,0,0,0.3)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(255,0,0,1)',
+        width: 1
+    })
+})];
+
+//symbols
+var two_symbols = [new ol.style.RegularShape({
+    points: 3,
+    radius: 5,
+    fill: new ol.style.Fill({
+        color: 'rgba(255,255,0,0.7)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(255,255,0,1)',
+        width: 1
+    })
+}),new ol.style.RegularShape({
+    points: 3,
+    radius: 9,
+    fill: new ol.style.Fill({
+        color: 'rgba(255,255,0,0.3)'
+    }),
+    stroke: new ol.style.Stroke({
+        color: 'rgba(255,255,0,1)',
+        width: 1
+    })
+})];
 
 function init_map(){
 
@@ -28,6 +97,7 @@ function view_watershed(){
     map.removeInteraction(select_interaction);
     map.removeLayer(vectorLayer);
     $("#get-started").modal('hide');
+    $loading.removeClass('hidden');
     if ($('#watershedSelect option:selected').val() !== "") {
 
         $("#inner-app-content").addClass("row");
@@ -60,7 +130,7 @@ function view_watershed(){
                         type: 'GET',
                         data: {
                             service: 'WFS',
-                            version: '1.0.0',
+                            version: '2.0.0',
                             request: 'GetFeature',
                             typename: workspace + ':' + watershed + '-' + subbasin + '-drainage_line',
                             srsname: 'EPSG:3857',
@@ -92,6 +162,7 @@ function view_watershed(){
         });
 
         window.loadFeatures = function (response) {
+
             vectorLayer.getSource().addFeatures(new ol.format.GeoJSON().readFeatures(response));
         };
 
@@ -130,7 +201,7 @@ function view_watershed(){
 
             }
         });
-
+        $loading.addClass('hidden');
         select_interaction = new ol.interaction.Select({
             layers: [vectorLayer]
         });
@@ -162,7 +233,8 @@ function view_watershed(){
         map.updateSize();
         map.removeInteraction(select_interaction);
         map.removeLayer(vectorLayer);
-        map.getView().fit([-13599676.07249856, -6815054.405920124, 13599676.07249856, 11030851.461876547], map.getSize())
+        map.getView().fit([-13599676.07249856, -6815054.405920124, 13599676.07249856, 11030851.461876547], map.getSize());
+        $loading.addClass('hidden');
     }
 }
 
@@ -180,11 +252,6 @@ function get_available_dates(watershed, subbasin) {
                 '<p class="alert alert-danger" style="text-align: center"><strong>An error occurred while retrieving the available dates</strong></p>'
             );
 
-            $('#dates').removeClass('hidden');
-
-            setTimeout(function () {
-                $('#dates').addClass('hidden')
-            }, 5000);
         },
         success: function (dates) {
             datesParsed = JSON.parse(dates.available_dates);
@@ -194,7 +261,7 @@ function get_available_dates(watershed, subbasin) {
                 $('#datesSelect').append($('<option></option>').val(p[1]).html(p[0]));
             });
 
-            $('#dates').removeClass('hidden');
+
         }
     });
 }
@@ -256,6 +323,9 @@ function get_return_periods(watershed, subbasin, comid) {
 }
 
 function get_time_series(model, watershed, subbasin, comid, startdate) {
+
+     $loading.removeClass('hidden');
+     $("#plot").addClass('hidden');
     $.ajax({
         type: 'GET',
         url: 'ecmwf-rapid/get-time-series/',
@@ -274,6 +344,11 @@ function get_time_series(model, watershed, subbasin, comid, startdate) {
             setTimeout(function () {
                 $('#info').addClass('hidden')
             }, 5000);
+            $('#dates').removeClass('hidden');
+
+            setTimeout(function () {
+                $('#dates').addClass('hidden')
+            }, 5000);
         },
         success: function (data) {
             if ("success" in data) {
@@ -282,6 +357,9 @@ function get_time_series(model, watershed, subbasin, comid, startdate) {
                     var returned_tsPairsData2 = JSON.parse(data.ts_pairs_data).ts_pairs2;
                     initChart(returned_tsPairsData,returned_tsPairsData2, watershed, subbasin, comid);
                     get_return_periods(watershed, subbasin, comid);
+                    $loading.addClass('hidden');
+                    $('#dates').removeClass('hidden');
+                    $("#plot").removeClass('hidden');
                 }
             } else if ("error" in data) {
                 $('#info').html('<p class="alert alert-danger" style="text-align: center"><strong>An unknown error occurred while retrieving the forecast</strong></p>');

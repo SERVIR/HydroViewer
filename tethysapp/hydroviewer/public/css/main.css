@@ -11,3 +11,43 @@
 #app-actions {
     display: none;
 }
+#map {
+    height: 100%;
+}
+
+#graph {
+    height: 100%;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.chart {
+    min-width: 320px;
+    max-width: 800px;
+    height: 220px;
+    margin: 0 auto;
+}
+.map-view-legend {
+    bottom: 50px;
+    /*right: 20px;*/
+    width: 170px;
+    max-height: 90%;
+    overflow-y: auto;
+    margin: 5px;
+    color:white;
+    background: #286090;
+    border: 1px #ddd solid;
+    z-index: 999;
+}
+.flex-container-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+#overview {
+    font-size: 15pt;
+    padding: 0 20px 0 20px;
+}

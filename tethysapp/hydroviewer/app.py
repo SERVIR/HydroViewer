@@ -38,6 +38,9 @@ class Hydroviewer(TethysAppBase):
             UrlMap(name='get-return-periods',
                    url='hydroviewer/ecmwf-rapid/get-return-periods',
                    controller='hydroviewer.controllers.get_return_periods'),
+            UrlMap(name='get-warning-points',
+                   url='hydroviewer/ecmwf-rapid/get-warning-points',
+                   controller='hydroviewer.controllers.get_warning_points'),
         )
 
         return url_maps

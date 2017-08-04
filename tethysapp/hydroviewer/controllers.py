@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from tethys_sdk.gizmos import *
 from django.http import JsonResponse
 
+from utilities import *
 import requests
 import json
 import datetime as dt
@@ -42,6 +43,52 @@ def home(request):
 
     return render(request, 'hydroviewer/home.html', context)
 
+
+def get_warning_points(request):
+    get_data = request.GET
+    try:
+        watershed = get_data['watershed']
+        subbasin = get_data['subbasin']
+
+        dates_res = requests.get(
+            'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetAvailableDates/?watershed_name=' + watershed +
+            '&subbasin_name=' + subbasin, headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+
+        folder = eval(dates_res.content)[-1]
+
+        res20 = requests.get(
+            'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWarningPoints/?watershed_name=' +
+            watershed + '&subbasin_name=' + subbasin + '&return_period=20&forecast_folder='+folder,
+            headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+
+        res10 = requests.get(
+            'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWarningPoints/?watershed_name=' +
+            watershed + '&subbasin_name=' + subbasin + '&return_period=10&forecast_folder=' + folder,
+            headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+
+        res2 = requests.get(
+            'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWarningPoints/?watershed_name=' +
+            watershed + '&subbasin_name=' + subbasin + '&return_period=2&forecast_folder=' + folder,
+            headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
+
+        # warning = {}
+        # warning["20"] = res20.content
+        # warning["10"] = res10.content
+        # warning["2"]= res2.content
+        # for lat in json.loads(res20.content)["warning_points"]:
+        #     print lat
+        return JsonResponse({
+            "success": "Data analysis complete!",
+            "warning20":json.loads(res20.content)["warning_points"],
+            "warning10":json.loads(res10.content)["warning_points"],
+            "warning2":json.loads(res2.content)["warning_points"]
+        })
+    except Exception as e:
+        print str(e)
+        return JsonResponse({'error': 'No data found for the selected reach.'})
+
+
+
 def ecmwf_get_time_series(request):
     get_data = request.GET
 
@@ -65,31 +112,34 @@ def ecmwf_get_time_series(request):
                 watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid,
                 headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
-            api_call = res.content
-            api_call2 = res2.content
+            res3 = requests.get(
+                'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=' +
+                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid + '&start_folder=' +
+                startdate + '&stat_type=outer_range_lower',
+                headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
-            data = api_call.split('dateTimeUTC="')
-            data.pop(0)
+            res4 = requests.get(
+                'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=' +
+                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid + '&start_folder=' +
+                startdate + '&stat_type=outer_range_upper',
+                headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
-            data2 = api_call2.split('dateTimeUTC="')
-            data2.pop(0)
+            res5 = requests.get(
+                'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=' +
+                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid + '&start_folder=' +
+                startdate + '&stat_type=std_dev_range_lower',
+                headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
+            res6 = requests.get(
+                'https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetWaterML/?watershed_name=' +
+                watershed + '&subbasin_name=' + subbasin + '&reach_id=' + comid + '&start_folder=' +
+                startdate + '&stat_type=std_dev_range_upper',
+                headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
-            ts_pairs = []
-            for elem in data:
-                date = time.mktime(dt.datetime.strptime(elem.split('"  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[0],
-                                                        '%Y-%m-%dT%H:%M:%S').timetuple())
-                value = float(elem.split('  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[1].split('</value>')[0])
-
-                ts_pairs.append([date * 1e3, value])
-
-            ts_pairs2 = []
-            for elem in data2:
-                date = time.mktime(dt.datetime.strptime(elem.split('"  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[0],
-                                                        '%Y-%m-%dT%H:%M:%S').timetuple())
-                value = float(elem.split('  methodCode="1"  sourceCode="1"  qualityControlLevelCode="1" >')[1].split('</value>')[0])
-
-                ts_pairs2.append([date * 1e3, value])
+            ts_pairs = get_ts_pairs(res.content)
+            ts_pairs2 = get_ts_pairs(res2.content)
+            ts_pairs3 = get_ts_pairs_range(res3.content,res4.content)
+            ts_pairs4 = get_ts_pairs_range(res5.content,res6.content)
 
             ts_pairs_data = {}
             ts_pairs_data['watershed'] = watershed
@@ -97,6 +147,9 @@ def ecmwf_get_time_series(request):
             ts_pairs_data['id'] = comid
             ts_pairs_data['ts_pairs'] = ts_pairs
             ts_pairs_data['ts_pairs2'] = ts_pairs2
+            ts_pairs_data['ts_pairs3'] = ts_pairs3
+            ts_pairs_data['ts_pairs4'] = ts_pairs4
+
 
             return JsonResponse({
                 "success": "Data analysis complete!",
@@ -112,7 +165,7 @@ def get_available_dates(request):
 
     watershed = get_data['watershed']
     subbasin = get_data['subbasin']
-
+    comid = get_data['comid']
     res = requests.get('https://tethys.byu.edu/apps/streamflow-prediction-tool/api/GetAvailableDates/?watershed_name=' + watershed +
                        '&subbasin_name=' + subbasin, headers={'Authorization': 'Token 72b145121add58bcc5843044d9f1006d9140b84b'})
 
@@ -123,7 +176,7 @@ def get_available_dates(request):
             date_f = dt.datetime.strptime(date_mod , '%Y%m%d.%H%M').strftime('%Y-%m-%d %H:%M')
         else:
             date_f = dt.datetime.strptime(date, '%Y%m%d.%H%M').strftime('%Y-%m-%d %H:%M')
-        dates.append([date_f, date])
+        dates.append([date_f,date,watershed,subbasin,comid])
 
     dates.append(['Select Date', dates[-1][1]])
     dates.reverse()
