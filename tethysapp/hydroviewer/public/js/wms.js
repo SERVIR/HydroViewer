@@ -250,7 +250,7 @@ function get_warning_points(watershed,subbasin){
             'subbasin': subbasin
         },
         error: function (error) {
-            console.log(error)
+            console.log(error);
         },
         success: function (result) {
 
@@ -448,6 +448,9 @@ function get_time_series(model, watershed, subbasin, comid, startdate) {
 }
 
 function initChart(data,data2,data3,data4, watershed, subbasin, id) {
+    if($("#container").highcharts()){
+        $("#container").highcharts().destroy();
+    }
     Highcharts.stockChart('container', {
         chart: {
             zoomType: 'x'
@@ -487,102 +490,102 @@ function initChart(data,data2,data3,data4, watershed, subbasin, id) {
                 type: 'all',
                 text: 'All'
             }
-        ],
-    buttonTheme: {
-        width: 60
-    },
-    selected: 0
-},
-    xAxis: {
-        title: {
-            text: 'Date (UTC)'
+            ],
+            buttonTheme: {
+                width: 60
+            },
+            selected: 0
         },
-        type: 'datetime',
+        xAxis: {
+            title: {
+                text: 'Date (UTC)'
+            },
+            type: 'datetime',
             tickInterval:24 * 3600 * 10000,
             minRange: 1 * 24 * 3600000,
             ordinal:false
-    },
-    yAxis: {
-        title: {
-            text: 'Flow (cms)'
         },
-        opposite:false,
+        yAxis: {
+            title: {
+                text: 'Flow (cms)'
+            },
+            opposite:false,
             min:0
-    },
-    legend: {
-        enabled: true
-    },
-    _navigator: {
-        enabled: false
-    },
-    plotOptions: {
-        series:{
-            pointStart: Date.UTC(1980, 0, 1),
+        },
+        legend: {
+            enabled: true
+        },
+        _navigator: {
+            enabled: false
+        },
+        plotOptions: {
+            series:{
+                pointStart: Date.UTC(1980, 0, 1),
                 pointInterval: 24 * 3600 * 1000,
                 connectNulls: true
-        },
-        area: {
-            fillColor: {
-                linearGradient: {
-                    x1: 0,
+            },
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
                         y1: 0,
                         x2: 0,
                         y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
                 },
-                stops: [
-                    [0, Highcharts.getOptions().colors[0]],
-                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                ]
-            },
-            lineWidth: 1,
+                lineWidth: 1,
                 states: {
-                hover: {
-                    lineWidth: 1
-                }
-            },
-            threshold: null,
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null,
                 marker: {
-                enabled: false
+                    enabled: false
+                }
             }
-        }
-    },
+        },
 
-    series: [{
-        type: 'line',
-        name: 'Mean Forecast',
-        data: data,
-        lineWidth: 4
-    },
-        {
+        series: [{
             type: 'line',
-            name: 'Historic Forecast',
-            data: data2,
-            lineWidth: 2
+            name: 'Mean Forecast',
+            data: data,
+            lineWidth: 4
         },
-        {
-            type: 'arearange',
-            name: 'Ensemble Range',
-            data: data3,
-            lineWidth: 0,
-            dataLabels: {
-                enabled: false
+            {
+                type: 'line',
+                name: 'Historic Forecast',
+                data: data2,
+                lineWidth: 2
             },
-            fillOpacity: 0.3,
-            visible: false
-        },
-        {
-            type: 'arearange',
-            name: 'Std. Dev.',
-            data: data4,
-            lineWidth: 0,
-            dataLabels: {
-                enabled: false
+            {
+                type: 'arearange',
+                name: 'Ensemble Range',
+                data: data3,
+                lineWidth: 0,
+                dataLabels: {
+                    enabled: false
+                },
+                fillOpacity: 0.3,
+                visible: false
             },
-            fillOpacity: 0.3,
-            visible: false
-        }
-    ]
-});
+            {
+                type: 'arearange',
+                name: 'Std. Dev.',
+                data: data4,
+                lineWidth: 0,
+                dataLabels: {
+                    enabled: false
+                },
+                fillOpacity: 0.3,
+                visible: false
+            }
+        ]
+    });
 
 }
 

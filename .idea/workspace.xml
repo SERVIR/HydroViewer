@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93f1c550-5d35-4ef0-b9f5-c04dd1fc1498" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" afterPath="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,14 +69,14 @@
       <file leaf-file-name="wms.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="469" column="26" lean-forward="true" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
+            <state relative-caret-position="-2448">
+              <caret line="254" column="35" lean-forward="false" selection-start-line="254" selection-start-column="35" selection-end-line="254" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
-                <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
-                <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
-                <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
+                <marker date="1504100274360" expanded="true" signature="10579:10597" ph="..." />
+                <marker date="1504100274360" expanded="true" signature="11575:11593" ph="..." />
+                <marker date="1504100274360" expanded="true" signature="13625:13643" ph="..." />
+                <marker date="1504100274360" expanded="true" signature="14869:14887" ph="..." />
               </folding>
             </state>
           </provider>
@@ -83,31 +85,31 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+            <state relative-caret-position="999">
+              <caret line="69" column="7" lean-forward="false" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="21" column="73" lean-forward="false" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
+            <state relative-caret-position="738">
+              <caret line="62" column="33" lean-forward="false" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#3;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="77" />
+            <state relative-caret-position="522">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,12 +141,12 @@
       <list>
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/utilities.py" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/main.js" />
-        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/app.py" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py" />
-        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" />
-        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
         <option value="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html" />
+        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js" />
+        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css" />
+        <option value="$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html" />
       </list>
     </option>
   </component>
@@ -443,10 +445,10 @@
           <caret line="227" column="47" lean-forward="false" selection-start-line="227" selection-start-column="47" selection-end-line="227" selection-end-column="47" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="10579:10597" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="11575:11593" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="13625:13643" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="14869:14887" ph="..." />
           </folding>
         </state>
       </provider>
@@ -464,8 +466,8 @@
         <state relative-caret-position="900">
           <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -488,19 +490,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css">
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="-2448">
+          <caret line="254" column="35" lean-forward="false" selection-start-line="254" selection-start-column="35" selection-end-line="254" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1504100274360" expanded="true" signature="10579:10597" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="11575:11593" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="13625:13643" ph="..." />
+            <marker date="1504100274360" expanded="true" signature="14869:14887" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/app.py">
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="39" column="76" lean-forward="false" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
-          <folding />
+        <state relative-caret-position="261">
+          <caret line="80" column="49" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -528,46 +538,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/controllers.py">
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="80" column="49" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/js/wms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="469" column="26" lean-forward="true" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1501876684549" expanded="true" signature="10578:10596" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="11574:11592" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="13624:13642" ph="..." />
-            <marker date="1501876684549" expanded="true" signature="14868:14886" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="21" column="73" lean-forward="false" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#4;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="702">
+          <caret line="39" column="76" lean-forward="false" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="77" />
+        <state relative-caret-position="522">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="69" column="7" lean-forward="false" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tethysapp/hydroviewer/templates/hydroviewer/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="62" column="33" lean-forward="false" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#3;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

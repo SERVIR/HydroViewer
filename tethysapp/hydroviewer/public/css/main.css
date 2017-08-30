@@ -51,3 +51,28 @@
     font-size: 15pt;
     padding: 0 20px 0 20px;
 }
+#logos {
+  padding: 5px 0;
+  white-space: nowrap;
+  width: 100%;
+  display: table;
+}
+
+.logo-image {
+  vertical-align: middle;
+  display: table-cell;
+  padding: 0 2px;
+}
+
+.logo-image img {
+  max-width: 100%;
+}
+#about .modal-dialog {
+  width: 75%;
+  height: 75%;
+  padding: 0;
+}
+#about .modal-body {
+  height: 100%;
+  border-radius: 0;
+}
